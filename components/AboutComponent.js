@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Text, ScrollView, FlatList } from 'react-native';
 import { Card, ListItem } from 'react-native-elements';
-import { PARTNERS } from '../shared/partners';
+import { connect} from 'react-redux';
+import { baseUrl} from '../shared/baseUrl';
 
 
 function Mission (){

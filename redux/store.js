@@ -4,7 +4,7 @@ import logger from 'redux-logger';
 import { campsitesReducer, commentsReducer, partnersReducer, promotionsReducer } from './reducer';
 
 
-export const Store = () => {
+export const ConfigureStore= () => {
     const store = createStore(
         combineReducers({
             campsites: campsitesReducer,

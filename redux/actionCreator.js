@@ -1,4 +1,5 @@
-import * as constant from './constant';
+import *
+ as constant from './constant';
 import { baseUrl } from '../shared/baseUrl';
 
 export const fetchComments = () => async (dispatch)  => {
@@ -22,12 +23,12 @@ export const fetchComments = () => async (dispatch)  => {
 };
 
 export const commentsFailed = errMess => ({
-    type: ActionTypes.COMMENTS_FAILED,
+    type: constant.COMMENTS_FAILED,
     payload: errMess
 });
 
 export const addComments = (comments) => ({
-    type: ActionTypes.ADD_COMMENTS,
+    type: constant.ADD_COMMENTS,
     payload: comments
 });
 
@@ -55,16 +56,16 @@ export const fetchCampsites = () => async (dispatch)  => {
 };
 
 export const campsitesLoading = () => ({
-    type: ActionTypes.CAMPSITES_LOADING
+    type: constant.CAMPSITES_LOADING
 });
 
 export const campsitesFailed = errMess => ({
-    type: ActionTypes.CAMPSITES_FAILED,
+    type: constant.CAMPSITES_FAILED,
     payload: errMess
 });
 
 export const addCampsites = campsites => ({
-    type: ActionTypes.ADD_CAMPSITES,
+    type: constant.ADD_CAMPSITES,
     payload: campsites
 });
 
@@ -92,16 +93,16 @@ export const fetchPromotions = () => async (dispatch)  => {
 };
 
 export const promotionsLoading = () => ({
-    type: ActionTypes.PROMOTIONS_LOADING
+    type: constant.PROMOTIONS_LOADING
 });
 
 export const promotionsFailed = errMess => ({
-    type: ActionTypes.PROMOTIONS_FAILED,
+    type: constant.PROMOTIONS_FAILED,
     payload: errMess
 });
 
 export const addPromotions = promotions => ({
-    type: ActionTypes.ADD_PROMOTIONS,
+    type: constant.ADD_PROMOTIONS,
     payload: promotions
 });
 
@@ -129,15 +130,15 @@ export const fetchPartners = () => async (dispatch) => {
 };
 
 export const partnersLoading = () => ({
-    type: ActionTypes.PARTNERS_LOADING
+    type: constant.PARTNERS_LOADING
 });
 
 export const partnersFailed = errMess => ({
-    type: ActionTypes.PARTNERS_FAILED,
+    type: constant.PARTNERS_FAILED,
     payload: errMess
 });
 
 export const addPartners = partners => ({
-    type: ActionTypes.ADD_PARTNERS,
+    type: constant.ADD_PARTNERS,
     payload: partners
 });
