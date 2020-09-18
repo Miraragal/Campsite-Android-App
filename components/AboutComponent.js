@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
 import { Text, ScrollView, FlatList } from 'react-native';
 import { Card, ListItem } from 'react-native-elements';
-import { connect} from 'react-redux';
-import { baseUrl} from '../shared/baseUrl';
+import { connect} from 'react-redux'; 
+import { baseUrl} from '../shared/baseUrl'; 
+
+const mapStateToProps = state => {
+    return {
+        partners: state.partners
+    }
+}
 
 
 function Mission (){
@@ -18,13 +24,13 @@ function Mission (){
 
 
 class About extends Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            partners: PARTNERS
-        };
-    }
+    // No lo necesitamos. Hemos defindo mapStateProps para traer info desde el servidor
+    // constructor(props) {
+    //     super(props);
+    //     this.state = {
+    //         partners: PARTNERS
+    //     };
+    // }
 
     static navigationOptions={
         title: 'About Us'
@@ -36,7 +42,7 @@ class About extends Component {
                 <ListItem 
                     title={item.name}
                     subtitle={item.description}
-                    leftAvatar={{source: require('./images/bootstrap-logo.png')}}
+                    leftAvatar={{source: {uri: baseUrl + item.image}}} //importamos imagen desde server
                 />
             )
         }
@@ -48,7 +54,7 @@ class About extends Component {
            <Card
                 title='Community Partners'>
                     <FlatList
-                data={this.state.partners}
+                data={this.props.partners.partners}// llamamos al state con props.partnes y luego al array
                 renderItem={renderPartner}
                 keyExtractor={item => item.id.toString()}
             />
@@ -60,4 +66,4 @@ class About extends Component {
     }
 }
 
-export default About
+export default connect(mapStateToProps)(About); // exportamos Props
