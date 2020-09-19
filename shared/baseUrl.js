@@ -5,3 +5,4 @@ export const baseUrl= 'http://10.0.2.2:3001/'
 //The 10.0.2.2 is the solution to that problem :)
 
 // comand to star json-server json-server --watch db.json -p 3001 -d 2000
+//json-server -H 0.0.0.0 --watch db.json -p 3001 -d 2000
