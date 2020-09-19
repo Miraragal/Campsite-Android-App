@@ -29,12 +29,12 @@ export const fetchComments = () => (dispatch) => {
 
 export const commentsFailed = (errMess) => ({
   type: ActionTypes.COMMENTS_FAILED,
-  payload: errMess,
+  payload: errMess
 });
 
 export const addComments = (comments) => ({
   type: ActionTypes.ADD_COMMENTS,
-  payload: comments,
+  payload: comments
 });
 
 export const fetchCampsites = () => (dispatch) => {
@@ -64,17 +64,17 @@ export const fetchCampsites = () => (dispatch) => {
 };
 
 export const campsitesLoading = () => ({
-  type: ActionTypes.CAMPSITES_LOADING,
+  type: ActionTypes.CAMPSITES_LOADING
 });
 
 export const campsitesFailed = (errMess) => ({
   type: ActionTypes.CAMPSITES_FAILED,
-  payload: errMess,
+  payload: errMess
 });
 
 export const addCampsites = (campsites) => ({
   type: ActionTypes.ADD_CAMPSITES,
-  payload: campsites,
+  payload: campsites
 });
 
 export const fetchPromotions = () => (dispatch) => {
@@ -109,12 +109,12 @@ export const promotionsLoading = () => ({
 
 export const promotionsFailed = (errMess) => ({
   type: ActionTypes.PROMOTIONS_FAILED,
-  payload: errMess,
+  payload: errMess
 });
 
 export const addPromotions = (promotions) => ({
   type: ActionTypes.ADD_PROMOTIONS,
-  payload: promotions,
+  payload: promotions
 });
 
 export const fetchPartners = () => (dispatch) => {
@@ -149,12 +149,12 @@ export const partnersLoading = () => ({
 
 export const partnersFailed = (errMess) => ({
   type: ActionTypes.PARTNERS_FAILED,
-  payload: errMess,
+  payload: errMess
 });
 
 export const addPartners = (partners) => ({
   type: ActionTypes.ADD_PARTNERS,
-  payload: partners,
+  payload: partners
 });
 
 
@@ -169,3 +169,30 @@ export const addFavorite = campsiteId => ({
   type: ActionTypes.ADD_FAVORITE,
   payload: campsiteId
 });
+
+//ADDING COMMENTS
+export const postComment = (campsiteId, rating, author, text) => dispatch => {
+  const date= new Date()
+  date.toJSON()
+  date.toISOString()
+
+  const newComment = {
+    campsiteId,
+    rating,
+    author,
+    text,
+    date:date
+  };
+
+ 
+  setTimeout(() => {
+      dispatch(addComment(newComment));
+  }, 2000);
+};
+
+export const addComment = (comment) => ({
+  type: ActionTypes.ADD_COMMENT,
+  payload: comment
+});
+
+
