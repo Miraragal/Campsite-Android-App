@@ -35,18 +35,25 @@ const mapDispatchToProps = {
 function RenderCampsite(props) {
   const { campsite } = props;
 
-  const view=React.createRef()
+  const view = React.createRef(); //VISUAL FEEDBACK to the user
 
-  const recognizeDrag = ({dx}) => (dx < -200) ? true : false //GESTURES dx movimiento horizontal (200 velocidad) dy movimientos verticales
-  const panResponder = PanResponder.create({  //GESTURES
+  const recognizeDrag = ({ dx }) => (dx < -200 ? true : false); //GESTURES dx movimiento horizontal (200 velocidad) dy movimientos verticales
+  const recognizeComment = ({ dx }) => (dx > -200 ? true : false);
+
+  const panResponder = PanResponder.create({
+    //GESTURES
     onStartShouldSetPanResponder: () => true,
-    onPanResponderGrant: ()=> {
-        view.current.rubberBand(1000)
-        .then(endState=> console.log(endState.finished? 'finished': 'canceled')) // we add an action at the end of the animation
+    onPanResponderGrant: () => {
+      // we give visual feedback to the user
+      view.current
+        .rubberBand(1000)
+        .then((endState) =>
+          console.log(endState.finished ? "finished" : "canceled")
+        ); // we add an action at the end of the animation
     },
     onPanResponderEnd: (e, gestureState) => {
-        console.log('pan responder end', gestureState)
-        if (recognizeDrag(gestureState)) {
+      console.log("pan responder end", gestureState);
+      if (recognizeDrag(gestureState)) {
         Alert.alert(
           "Add Favorite",
           "Are you sure you wish to add " + campsite.name + " to favorites?",
@@ -65,20 +72,21 @@ function RenderCampsite(props) {
             },
           ],
           { cancelable: false }
-        )
+        );
+      } else if(recognizeComment(gestureState)){
+        props.onShowModal();
       }
-      return true;
-    },
-  })
+    }
+  });
 
   if (campsite) {
     return (
-      <Animatable.View 
-      animation="fadeInDown" 
-      duration={2000} 
-      delay={1000}
-      ref={view}
-      {...panResponder.panHandlers} //GESTURES
+      <Animatable.View
+        animation="fadeInDown"
+        duration={2000}
+        delay={1000}
+        ref={view} //GESTURES-VISUAL FEEDBACK
+        {...panResponder.panHandlers} //GESTURES
       >
         <Card
           featuredTitle={campsite.name}
