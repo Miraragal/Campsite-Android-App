@@ -34,9 +34,16 @@ const mapDispatchToProps = {
 
 function RenderCampsite(props) {
   const { campsite } = props;
-  const recognizeDrag = ({dx}) => (dx < -200) ? true : false //GESTURES
+
+  const view=React.createRef()
+
+  const recognizeDrag = ({dx}) => (dx < -200) ? true : false //GESTURES dx movimiento horizontal (200 velocidad) dy movimientos verticales
   const panResponder = PanResponder.create({  //GESTURES
     onStartShouldSetPanResponder: () => true,
+    onPanResponderGrant: ()=> {
+        view.current.rubberBand(1000)
+        .then(endState=> console.log(endState.finished? 'finished': 'canceled')) // we add an action at the end of the animation
+    },
     onPanResponderEnd: (e, gestureState) => {
         console.log('pan responder end', gestureState)
         if (recognizeDrag(gestureState)) {
@@ -70,6 +77,7 @@ function RenderCampsite(props) {
       animation="fadeInDown" 
       duration={2000} 
       delay={1000}
+      ref={view}
       {...panResponder.panHandlers} //GESTURES
       >
         <Card
