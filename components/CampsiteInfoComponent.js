@@ -54,7 +54,7 @@ function RenderCampsite(props) {
         ); // we add an action at the end of the animation
     },
     onPanResponderEnd: (e, gestureState) => {
-      console.log("pan responder end", gestureState);
+      // console.log("pan responder end", gestureState);
       if (recognizeDrag(gestureState)) {
         Alert.alert(
           "Add Favorite",

@@ -22,6 +22,9 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "sdkVersion": "35.0.0"
+    "sdkVersion": "35.0.0",
+    "android": {
+      "package": "co.nucamp.nucampsite.student"
+    }
   }
 }
