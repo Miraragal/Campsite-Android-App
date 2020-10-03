@@ -340,25 +340,32 @@ class Main extends Component {
     this.props.fetchPromotions();
     this.props.fetchPartners();
 
-    this.showNetInfo();
-    // this.unsubscribeNetInfo = NetInfo.addEventListener((connectionInfo) => {
-    // this.handleConnectivityChange(connectionInfo);
+    this.showNetInfo(); 
+    
+      //Indica a q red estas conectado
+    // NetInfo.fetch().then((connectionInfo) => {
+    //   Platform.OS === "ios"
+    //     ? Alert.alert("Initial Network Connectivity Type:", connectionInfo.type)
+    //     : ToastAndroid.show(
+    //         "Initial Network Connectivity Type: " + connectionInfo.type,
+    //         ToastAndroid.LONG //Toast es un mensaje q se muestra en la pantalla por unos segundos.Long indica period of time
+    //       );
     // });
+    this.unsubscribeNetInfo = NetInfo.addEventListener((connectionInfo) => {
+    this.handleConnectivityChange(connectionInfo);
+    });
   }
-  //Indica a q red estas conectado
-  //Toast es un mensaje q se muestra en la pantalla por unos segundos.Long indica period of time
 
-  //TASK 3
+  //TASK 3 
   async showNetInfo() {
-    NetInfo.fetch().then((connectionInfo) => {
-      Platform.OS === "ios"
+    const connectionInfo= await NetInfo.fetch()
+    Platform.OS === "ios"
         ? Alert.alert("Initial Network Connectivity Type:", connectionInfo.type)
         : ToastAndroid.show(
             "Initial Network Connectivity Type: " + connectionInfo.type,
             ToastAndroid.LONG
-          );
-    });
-  }
+          )
+    }
 
   componentWillUnmount() {
     this.unsubscribeNetInfo();
